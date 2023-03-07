@@ -1,3 +1,8 @@
+
+
+import 'package:flutter_project_2/widgets/user_transactions.dart';
+
+import './widgets/new_transaction.dart';
 import 'package:intl/intl.dart';
 import 'package:flutter/material.dart';
 
@@ -30,54 +35,22 @@ class MyHomePage extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Flutter App 2'),
       ),
-      body: Column(
-        // mainAxisAlignment: MainAxisAlignment.spaceAround,
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: <Widget>[
-          Container(
-            width: double.infinity,
-            child: Card(
-              color: Colors.blue,
-              elevation: 6,
-              child: Text('CHART!'),
-            ),
-          ),
-          Card(
-            elevation: 5,
-            child: Container(
-              padding: EdgeInsets.all(10),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.end,
-                children: <Widget>[
-                  TextField(
-                    decoration: InputDecoration(labelText: 'Title'),
-                    controller: titlController,
-                    // onChanged: (val) {
-                    //   titleInput = val;
-                    // },
-                  ),
-                  TextField(
-                    decoration: InputDecoration(labelText: 'Amount'),
-                    controller: amountController,
-                    // onChanged: (val) {
-                    //   amountInput = val;
-                    // },
-                  ),
-                  TextButton(
-                    onPressed: () {
-                      print(titlController.text);
-                    },
-                    style: TextButton.styleFrom(
-                      foregroundColor: Colors.purple,
-                    ),
-                    child: const Text('Add Transaction'),
-                  )
-                ],
+      body: SingleChildScrollView(
+        child: Column(
+          // mainAxisAlignment: MainAxisAlignment.spaceAround,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: <Widget>[
+            Container(
+              width: double.infinity,
+              child: Card(
+                color: Colors.blue,
+                elevation: 6,
+                child: Text('CHART!'),
               ),
             ),
-          ),
-          TransactionList()
-        ],
+            UserTransactions(),
+          ],
+        ),
       ),
     );
   }
