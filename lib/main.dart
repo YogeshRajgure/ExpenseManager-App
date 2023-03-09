@@ -1,5 +1,3 @@
-import 'package:flutter_project_2/widgets/user_transactions.dart';
-
 import './widgets/new_transaction.dart';
 import 'package:intl/intl.dart';
 import 'package:flutter/material.dart';
@@ -17,7 +15,18 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Expense Manager',
-      
+      theme: ThemeData(
+          primarySwatch: Colors.purple,
+          accentColor: Colors.amber,
+          fontFamily: 'Quicksand',
+          appBarTheme: AppBarTheme(
+            titleTextStyle: TextStyle(
+              fontFamily: 'OpenSans',
+              fontSize: 20,
+              fontWeight: FontWeight.bold,
+            )
+          ),
+          ),
       home: MyHomePage(),
     );
   }
@@ -30,7 +39,6 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   // String? titleInput;
-
 
   final List<Transaction> _userTransaction = [
     Transaction(
