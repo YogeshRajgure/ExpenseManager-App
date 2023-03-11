@@ -30,11 +30,7 @@ class _NewTransactionState extends State<NewTransaction> {
     if (_enteredTitle.isEmpty || _enteredAmount <= 0 || _selectedDate == null) {
       return;
     }
-    widget.addTx(
-      _enteredTitle,
-      _enteredAmount,
-      _selectedDate
-    );
+    widget.addTx(_enteredTitle, _enteredAmount, _selectedDate);
 
     Navigator.of(context).pop();
   }
@@ -52,70 +48,75 @@ class _NewTransactionState extends State<NewTransaction> {
       setState(() {
         _selectedDate = pickedDate;
       });
-      
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      elevation: 5,
-      child: Container(
-        padding: const EdgeInsets.all(10),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.end,
-          children: <Widget>[
-            TextField(
-              decoration: const InputDecoration(labelText: 'Title'),
-              controller: _titleController,
-              onSubmitted: (_) => _submitData(),
-              // onChanged: (val) {
-              //   titleInput = val;
-              // },
-            ),
-            TextField(
-              decoration: const InputDecoration(labelText: 'Amount'),
-              controller: _amountController,
-              keyboardType: TextInputType.number,
-              onSubmitted: (_) => _submitData(),
-              // onChanged: (val) {
-              //   amountInput = val;
-              // },
-            ),
-            Container(
-              height: 70,
-              child: Row(
-                children: <Widget>[
-                  Expanded(
-                    child: Text(_selectedDate == null
-                        ? 'No date Chosen!'
-                        : 'Picked Date: ${DateFormat.yMd().format(_selectedDate as DateTime)}' 
+    return SingleChildScrollView(
+      child: Card(
+        elevation: 5,
+        child: Container(
+          padding: EdgeInsets.only(
+            top: 10,
+            left: 10,
+            right: 10,
+            bottom: MediaQuery.of(context).viewInsets.bottom + 10,
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.end,
+            children: <Widget>[
+              TextField(
+                decoration: const InputDecoration(labelText: 'Title'),
+                controller: _titleController,
+                onSubmitted: (_) => _submitData(),
+                // onChanged: (val) {
+                //   titleInput = val;
+                // },
+              ),
+              TextField(
+                decoration: const InputDecoration(labelText: 'Amount'),
+                controller: _amountController,
+                keyboardType: TextInputType.number,
+                onSubmitted: (_) => _submitData(),
+                // onChanged: (val) {
+                //   amountInput = val;
+                // },
+              ),
+              Container(
+                height: 70,
+                child: Row(
+                  children: <Widget>[
+                    Expanded(
+                      child: Text(_selectedDate == null
+                          ? 'No date Chosen!'
+                          : 'Picked Date: ${DateFormat.yMd().format(_selectedDate as DateTime)}'),
+                    ),
+                    TextButton(
+                      onPressed: _presentDatePicker,
+                      child: Text(
+                        'Choose Date',
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
                         ),
-                  ),
-                  TextButton(
-                    onPressed: _presentDatePicker,
-                    child: Text(
-                      'Choose Date',
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
+                      ),
+                      style: TextButton.styleFrom(
+                        foregroundColor: Theme.of(context).primaryColor,
                       ),
                     ),
-                    style: TextButton.styleFrom(
-                      foregroundColor: Theme.of(context).primaryColor,
-                    ),
-                  ),
-                ],
+                  ],
+                ),
               ),
-            ),
-            ElevatedButton(
-              onPressed: _submitData,
-              style: TextButton.styleFrom(
-                  foregroundColor:
-                      Theme.of(context).textTheme.labelLarge?.color,
-                  backgroundColor: Theme.of(context).primaryColor),
-              child: const Text('Add Transaction'),
-            )
-          ],
+              ElevatedButton(
+                onPressed: _submitData,
+                style: TextButton.styleFrom(
+                    foregroundColor:
+                        Theme.of(context).textTheme.labelLarge?.color,
+                    backgroundColor: Theme.of(context).primaryColor),
+                child: const Text('Add Transaction'),
+              )
+            ],
+          ),
         ),
       ),
     );
