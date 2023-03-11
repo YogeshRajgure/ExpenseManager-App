@@ -6,7 +6,7 @@ import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:intl/intl.dart';
 import 'package:flutter/material.dart';
 
-import './adaaptive_TextButton.dart';
+import 'adaptive_TextButton.dart';
 
 class NewTransaction extends StatefulWidget {
   final Function addTx;
