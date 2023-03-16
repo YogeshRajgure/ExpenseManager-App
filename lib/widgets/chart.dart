@@ -10,7 +10,9 @@ import './chart_bar.dart';
 class Chart extends StatelessWidget {
   final List<Transaction> recentTransactions;
 
-  Chart(this.recentTransactions);
+  Chart(this.recentTransactions) {
+    print('constructor chart');
+  }
 
   // getters are properties that are calculated dynamically
   List<Map<String, Object>> get groupedTransactionsValues {
@@ -45,8 +47,10 @@ class Chart extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print(groupedTransactionsValues);
+    // print(groupedTransactionsValues);
+    print('build() Chart');
     return Card(
+      color: Colors.grey[800],
       elevation: 6,
       margin: const EdgeInsets.all(20),
       child: Padding(
